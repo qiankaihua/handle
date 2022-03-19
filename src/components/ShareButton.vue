@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { showShareDialog } from '~/state'
+import seedrandom from 'seedrandom'
+import { dayNo, showShareDialog } from '~/state'
 import { t } from '~/i18n'
+import { history } from '~/storage'
 
 function open() {
-  showShareDialog.value = true
+  // showShareDialog.value = true
+  const idx = Math.floor(seedrandom(""+Date())() * 999999999)
+  history.value[dayNo.value] = {}
+  window.location.replace("?random=" + idx)
 }
 </script>
 
@@ -13,7 +18,7 @@ function open() {
     p="x3 y1"
     @click="open()"
   >
-    <div i-carbon-share text-base />
+    <div text-base />
     {{ t('share') }}
   </button>
 </template>

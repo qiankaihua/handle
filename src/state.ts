@@ -41,7 +41,7 @@ export const answer = computed(() =>
       word: params.get('word')!,
       hint: getHint(params.get('word')!),
     }
-    : getAnswerOfDay(dayNo.value),
+    : getAnswerOfDay(dayNo.value, params.get('random')),
 )
 
 export const hint = computed(() => answer.value.hint)

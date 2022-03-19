@@ -1,9 +1,11 @@
+import seedrandom from 'seedrandom'
 import { getPinyinRaw, toSimplified } from '@hankit/tools'
 import PolyphonesRaw from '../data/polyphones.json'
 import IdiomsRaw from '../data/idioms.txt?raw'
 
 export const IdiomsList = IdiomsRaw.split('\n').map(i => i.trim()).filter(Boolean)
 export const Polyphones = PolyphonesRaw as Record<string, string>
+export const PolyphonesKey = Object.keys(Polyphones)
 
 export function getIdiom(word: string): [string, string | undefined] | undefined {
   const simplified = toSimplified(word)
@@ -16,6 +18,17 @@ export function getIdiom(word: string): [string, string | undefined] | undefined
   if (IdiomsList.includes(simplified))
     return [simplified, undefined]
   return undefined
+}
+
+export function GetRandomWord(day: string): string {
+  const IdiomsLen = IdiomsList.length, PolyLen = PolyphonesKey.length
+  const len = IdiomsLen + PolyLen
+  const idx = Math.floor(seedrandom(day)() * len)
+  if (idx < IdiomsLen) {
+    return IdiomsList[idx]
+  } else {
+    return PolyphonesKey[idx - IdiomsLen]
+  }
 }
 
 export function getPinyin(word: string) {
