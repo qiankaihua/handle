@@ -33,6 +33,7 @@ export default defineConfig({
       }),
       Unocss(),
     ],
+  base: process.env.NODE_ENV === 'production' ? './' : '/han_wordle',
   test: {
     includeSource: ['packages/*/src/**/*.ts'],
   },
