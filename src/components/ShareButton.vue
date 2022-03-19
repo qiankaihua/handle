@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import seedrandom from 'seedrandom'
-import { dayNo, showShareDialog } from '~/state'
+import { dayNo } from '~/state'
 import { t } from '~/i18n'
 import { history } from '~/storage'
 

@@ -142,6 +142,7 @@ watchEffect(() => {
           </div>
         </div>
       </Transition>
+      <ShareButton m4 />
       <Transition name="fade-in">
         <div v-if="isFinishedDelay && isFinished">
           <ResultFooter />
